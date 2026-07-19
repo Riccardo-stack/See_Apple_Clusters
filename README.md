@@ -11,12 +11,13 @@ Real-time apple cluster detection powered by a custom-trained YOLO model. A comp
 
 ## ✨ Features
 
+- 📷 **Interactive desktop interface**: Launch the app and choose between webcam, photo, or video detection.
 - 📸 **Real-time webcam detection**: Highly optimized inference pipeline.
-- 🌐 **Flask MJPEG streaming server**: Remote viewing of detection feeds via the browser.
+- 📂 **Photo & video detection**: Browse and select files through a native file dialog.
+- 💾 **Save results**: Option to save detection results after viewing.
 - 🔄 **8 specialized data augmentation strategies**: Maximizes model robustness and accuracy.
 - 🔬 **Full reproducible training pipeline**: Scripts available to recreate the training from scratch.
 - 📥 **Auto-download of pre-trained weights**: Seamlessly fetches models from GitHub Releases.
-- 💻 **CLI interface**: Configurable options for inference, confidence thresholds, and testing formats.
 
 ## 🚀 Quick Start
 
@@ -37,38 +38,30 @@ uv sync
 python main.py
 ```
 
+You'll see an interactive menu:
+
+```
+╔══════════════════════════════════════╗
+║     🍎 Apple Clusters Detector       ║
+╠══════════════════════════════════════╣
+║                                      ║
+║  [1]  📷  Use Webcam                 ║
+║  [2]  📂  Open a Photo / Video       ║
+║  [q]  ❌  Quit                       ║
+║                                      ║
+╚══════════════════════════════════════╝
+```
+
 ## 📖 Usage
 
-**Webcam detection (default)**:
-```bash
-python main.py
-```
+**Webcam detection** — Select option `1` to start live detection. Press `q` in the video window to stop.
 
-**Run on sample images**:
-```bash
-python main.py --source samples/
-```
+**Photo / Video detection** — Select option `2` to open a file browser. Pick an image or video file. After detection on a photo, you'll be asked if you want to save the result.
 
-**Run on specific file**:
-```bash
-python main.py --source path/to/image.jpg
-```
-
-**Adjust confidence**:
+**Custom confidence threshold**:
 ```bash
 python main.py --confidence 0.5
 ```
-
-**Save results**:
-```bash
-python main.py --save
-```
-
-**Live streaming**:
-```bash
-python stream.py
-```
-*(After running, open your browser and navigate to `http://127.0.0.1:5000` to view the live feed)*
 
 ## 🏗️ Pipeline Overview
 
@@ -92,8 +85,7 @@ flowchart LR
 
 ```
 Apple_Clusters_Detector/
-├── main.py                  # Entry point — detection on webcam/images/video
-├── stream.py                # Flask MJPEG live streaming server
+├── main.py                  # Entry point — interactive detection menu
 ├── models/
 │   └── README.md            # Model download instructions
 ├── samples/                 # 8 sample images for testing
@@ -147,7 +139,6 @@ python training/train.py          # Train the model
 
 - [Ultralytics YOLO](https://docs.ultralytics.com/)
 - [Albumentations](https://albumentations.ai/)
-- [Flask](https://flask.palletsprojects.com/)
 - [OpenCV](https://opencv.org/)
 - [uv (package manager)](https://docs.astral.sh/uv/)
 - Python 3.12

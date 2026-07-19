@@ -20,6 +20,7 @@ Immagini/
 Database_apples/
 dataset/
 runs/
+results/
 
 # Model weights (auto-downloaded from GitHub Releases)
 models/*.pt
