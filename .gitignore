@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+wheels/
+
+# Virtual environments
+.venv/
+.export_venv/
+venv/
+env/
+
+# Training data & artifacts (large, reproducible)
+Immagini/
+Database_apples/
+dataset/
+runs/
+
+# Model weights (auto-downloaded from GitHub Releases)
+models/*.pt
+
+# Pretrained base weights
+yolo*.pt
+
+# YOLO caches
+*.cache
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Xcode (legacy)
+*.xcodeproj
+*.xcworkspace
+DerivedData/
+xcuserdata/
