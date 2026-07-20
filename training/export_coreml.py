@@ -27,20 +27,20 @@ def main():
 
     # ── Step 1: Create isolated venv with compatible numpy ──
     if not (VENV_DIR / "bin" / "python3").exists():
-        print("\n📦 Creating isolated Python environment...")
+        print("\nCreating isolated Python environment...")
         subprocess.check_call([sys.executable, "-m", "venv", str(VENV_DIR)])
         
         pip = str(VENV_DIR / "bin" / "pip")
-        print("📦 Installing dependencies (this takes ~1 min)...")
+        print("Installing dependencies (this takes ~1 min)...")
         subprocess.check_call([
             pip, "install", "--quiet",
             "ultralytics>=8.4.90",
             "coremltools>=9.0",
             "numpy>=1.26,<2",
         ])
-        print("✅ Environment ready")
+        print("Environment ready")
     else:
-        print("✅ Using existing export environment")
+        print("Using existing export environment")
 
     # ── Step 2: Run export in the isolated environment ──
     python = str(VENV_DIR / "bin" / "python3")
@@ -56,10 +56,10 @@ print(f"   coremltools: {{ct.__version__}}")
 
 model = YOLO("{WEIGHTS}")
 result = model.export(format="coreml", imgsz=640)
-print(f"\\n✅ Exported: {{result}}")
+print(f"\\nExported: {{result}}")
 """
 
-    print(f"\n🔄 Exporting model...")
+    print(f"\nExporting model...")
     subprocess.check_call([python, "-c", export_code])
 
 if __name__ == '__main__':

@@ -291,13 +291,13 @@ def augment_dataset():
         else:
             unpaired.append(img_file)
 
-    print(f"📸 Found {len(all_images)} total images")
-    print(f"🏷️  Found {len(paired)} images with labels")
+    print(f"Found {len(all_images)} total images")
+    print(f"Found {len(paired)} images with labels")
     if unpaired:
-        print(f"⚠️  {len(unpaired)} images without labels (will be skipped): "
+        print(f"Warning: {len(unpaired)} images without labels (will be skipped): "
               f"{unpaired[:5]}{'...' if len(unpaired) > 5 else ''}")
-    print(f"🔄 Creating {AUGMENTATIONS_PER_IMAGE} augmentations per image")
-    print(f"📊 Train/Val split: {(1 - VAL_SPLIT) * 100:.0f}% / {VAL_SPLIT * 100:.0f}%")
+    print(f"Creating {AUGMENTATIONS_PER_IMAGE} augmentations per image")
+    print(f"Train/Val split: {(1 - VAL_SPLIT) * 100:.0f}% / {VAL_SPLIT * 100:.0f}%")
     print("=" * 60)
 
     # ── Shuffle and split into train/val ──
@@ -306,9 +306,9 @@ def augment_dataset():
     val_pairs = paired[:val_count]
     train_pairs = paired[val_count:]
 
-    print(f"📂 Train: {len(train_pairs)} originals → "
+    print(f"Train: {len(train_pairs)} originals -> "
           f"~{len(train_pairs) * (1 + AUGMENTATIONS_PER_IMAGE)} total")
-    print(f"📂 Val:   {len(val_pairs)} originals → "
+    print(f"Val:   {len(val_pairs)} originals -> "
           f"~{len(val_pairs) * (1 + AUGMENTATIONS_PER_IMAGE)} total")
     print("=" * 60)
 
@@ -342,7 +342,7 @@ def augment_dataset():
             img_path = os.path.join(IMAGES_DIR, img_file)
             image = cv2.imread(img_path)
             if image is None:
-                print(f"  ⚠️  Could not read {img_file}, skipping.")
+                print(f"  Warning: Could not read {img_file}, skipping.")
                 failed += 1
                 continue
 
@@ -373,7 +373,7 @@ def augment_dataset():
                 )
                 total_created += 1
             except Exception as e:
-                print(f"  ⚠️  Error resizing {img_file}: {e}")
+                print(f"  Error resizing {img_file}: {e}")
                 failed += 1
                 continue
 
@@ -414,13 +414,13 @@ def augment_dataset():
                     total_created += 1
 
                 except Exception as e:
-                    print(f"  ⚠️  Error augmenting {img_file} "
+                    print(f"  Error augmenting {img_file} "
                           f"(aug {aug_idx}, '{pipe_name}'): {e}")
                     failed += 1
 
             # Progress
             if idx % 10 == 0 or idx == len(split_pairs):
-                print(f"  ✅ {split_name}: {idx}/{len(split_pairs)} images processed")
+                print(f"  {split_name}: {idx}/{len(split_pairs)} images processed")
 
     # ── Write data.yaml for YOLO training ──
     data_yaml_path = os.path.join(OUTPUT_DIR, "data.yaml")
@@ -437,16 +437,16 @@ def augment_dataset():
     val_imgs = len(os.listdir(os.path.join(OUTPUT_DIR, "images", "val")))
 
     print("\n" + "=" * 60)
-    print("✅ Augmentation complete!")
+    print("Augmentation complete!")
     print(f"   Train images: {train_imgs}")
     print(f"   Val images:   {val_imgs}")
     print(f"   Total:        {train_imgs + val_imgs}")
     if failed:
-        print(f"   ⚠️  Failures: {failed}")
+        print(f"   Failures: {failed}")
     print(f"\n   Output: {OUTPUT_DIR}")
     print(f"   Config: {data_yaml_path}")
     print("=" * 60)
-    print("\n🚀 Ready for YOLO training! Next step:")
+    print("\nReady for YOLO training! Next step:")
     print("   uv run yolo detect train data=dataset/data.yaml model=yolov8n.pt epochs=100")
 
 

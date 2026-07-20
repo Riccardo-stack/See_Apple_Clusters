@@ -86,12 +86,12 @@ def print_menu():
     """Print the interactive menu."""
     print()
     print("╔══════════════════════════════════════╗")
-    print("║     🍎 Apple Clusters Detector       ║")
+    print("║       Apple Clusters Detector        ║")
     print("╠══════════════════════════════════════╣")
     print("║                                      ║")
-    print("║  [1]  📷  Use Webcam                 ║")
-    print("║  [2]  📂  Open a Photo / Video       ║")
-    print("║  [q]  ❌  Quit                       ║")
+    print("║  [1]  Use Webcam                     ║")
+    print("║  [2]  Open a Photo / Video           ║")
+    print("║  [q]  Quit                           ║")
     print("║                                      ║")
     print("╚══════════════════════════════════════╝")
 
@@ -103,13 +103,13 @@ def run_webcam(model: YOLO, confidence: float):
     """Run live webcam detection with OpenCV display."""
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("❌ Could not open webcam.")
+        print("Could not open webcam.")
         return
 
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-    print("📷 Webcam started — press 'q' to stop.\n")
+    print("Webcam started — press 'q' to stop.\n")
 
     while True:
         success, frame = cap.read()
@@ -125,14 +125,14 @@ def run_webcam(model: YOLO, confidence: float):
 
     cap.release()
     cv2.destroyAllWindows()
-    print("📷 Webcam stopped.")
+    print("Webcam stopped.")
 
 
 def run_photo(model: YOLO, confidence: float, file_path: str):
     """Run detection on a single image, display result, and optionally save."""
     image = cv2.imread(file_path)
     if image is None:
-        print(f"❌ Could not read image: {file_path}")
+        print(f"Could not read image: {file_path}")
         return
 
     results = model.predict(image, conf=confidence, verbose=False)
@@ -144,13 +144,13 @@ def run_photo(model: YOLO, confidence: float, file_path: str):
     cv2.destroyAllWindows()
 
     # Ask if the user wants to save
-    answer = input("💾 Save the result image? (y/n): ").strip().lower()
+    answer = input("Save the result image? (y/n): ").strip().lower()
     if answer in ("y", "yes"):
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
         filename = f"result_{Path(file_path).stem}.jpg"
         save_path = RESULTS_DIR / filename
         cv2.imwrite(str(save_path), annotated)
-        print(f"✅ Saved to {save_path}")
+        print(f"Saved to {save_path}")
     else:
         print("Result not saved.")
 
@@ -159,10 +159,10 @@ def run_video(model: YOLO, confidence: float, file_path: str):
     """Run detection on a video file with OpenCV display."""
     cap = cv2.VideoCapture(file_path)
     if not cap.isOpened():
-        print(f"❌ Could not open video: {file_path}")
+        print(f"Could not open video: {file_path}")
         return
 
-    print(f"🎬 Playing video — press 'q' to stop.\n")
+    print(f"Playing video — press 'q' to stop.\n")
 
     while True:
         success, frame = cap.read()
@@ -178,7 +178,7 @@ def run_video(model: YOLO, confidence: float, file_path: str):
 
     cap.release()
     cv2.destroyAllWindows()
-    print("🎬 Video playback finished.")
+    print("Video playback finished.")
 
 
 # ──────────────────────────────────────────────────────────────
@@ -198,13 +198,13 @@ def main():
     ensure_model()
 
     # Load model once
-    print("🔄 Loading model...")
+    print("Loading model...")
     try:
         model = YOLO(MODEL_PATH)
     except Exception as e:
-        print(f"❌ Failed to load model: {e}")
+        print(f"Failed to load model: {e}")
         sys.exit(1)
-    print("✅ Model loaded!\n")
+    print("Model loaded!\n")
 
     # Interactive loop
     while True:
@@ -226,14 +226,14 @@ def main():
             elif ext in VIDEO_EXTENSIONS:
                 run_video(model, args.confidence, file_path)
             else:
-                print(f"❌ Unsupported file type: {ext}")
+                print(f"Unsupported file type: {ext}")
 
         elif choice in ("q", "quit", "exit"):
-            print("👋 Goodbye!")
+            print("Goodbye!")
             break
 
         else:
-            print("⚠️  Invalid option. Please try again.")
+            print("Invalid option. Please try again.")
 
 
 if __name__ == "__main__":
