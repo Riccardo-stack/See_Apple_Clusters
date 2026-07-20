@@ -17,7 +17,7 @@ The training pipeline consists of three main steps:
 **Note**: All scripts should be run from the project root directory.
 
 ### 1. Data Collection
-Place your original photos in the `Immagini/` directory in the project root.
+Collect as many images as you can.
 
 ### 2. Labeling
 Labels should be in YOLO format (`class x_center y_center w h`).
