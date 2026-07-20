@@ -1,4 +1,4 @@
-# 🍎 Apple Clusters Detector
+# Apple Clusters Detector
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![YOLO](https://img.shields.io/badge/YOLO-Ultralytics-00FFFF?logo=yolo&logoColor=white)](https://docs.ultralytics.com/)
@@ -9,22 +9,21 @@ Real-time apple cluster detection powered by a custom-trained YOLO model. A comp
 
 > Built to detect clusters of apples on trees using real-time video feeds, this project demonstrates the full lifecycle of a computer vision application.
 
-## ✨ Features
+## Features
 
-- 📷 **Interactive desktop interface**: Launch the app and choose between webcam, photo, or video detection.
-- 📸 **Real-time webcam detection**: Highly optimized inference pipeline.
-- 📂 **Photo & video detection**: Browse and select files through a native file dialog.
-- 💾 **Save results**: Option to save detection results after viewing.
-- 🔄 **8 specialized data augmentation strategies**: Maximizes model robustness and accuracy.
-- 🔬 **Full reproducible training pipeline**: Scripts available to recreate the training from scratch.
-- 📥 **Auto-download of pre-trained weights**: Seamlessly fetches models from GitHub Releases.
+- **Interactive desktop interface**: Launch the app and choose between webcam, photo, or video detection.
+- **Real-time webcam detection**: Highly optimized inference pipeline.
+- **Photo & video detection**: Browse and select files through a native file dialog.
+- **Save results**: Option to save detection results after viewing.
+- **Full reproducible training pipeline**: Scripts available to recreate the training from scratch.
+- **Auto-download of pre-trained weights**: Seamlessly fetches models from GitHub Releases.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.12+
 - `uv` package manager
-- Webcam (for live detection)
+- Webcam (only for live detection)
 
 ### Installation
 ```bash
@@ -42,17 +41,17 @@ You'll see an interactive menu:
 
 ```
 ╔══════════════════════════════════════╗
-║     🍎 Apple Clusters Detector       ║
+║        Apple Clusters Detector       ║
 ╠══════════════════════════════════════╣
 ║                                      ║
-║  [1]  📷  Use Webcam                 ║
-║  [2]  📂  Open a Photo / Video       ║
-║  [q]  ❌  Quit                       ║
+║  [1]    Use Webcam                   ║
+║  [2]    Open a Photo / Video         ║
+║  [q]    Quit                         ║
 ║                                      ║
 ╚══════════════════════════════════════╝
 ```
 
-## 📖 Usage
+## Usage
 
 **Webcam detection** — Select option `1` to start live detection. Press `q` in the video window to stop.
 
@@ -63,7 +62,7 @@ You'll see an interactive menu:
 python main.py --confidence 0.5
 ```
 
-## 🏗️ Pipeline Overview
+## Pipeline Overview
 
 Data Collection (iPhone photos) → Manual Labeling (YOLO format) → Data Augmentation (8 strategies, ~9x data) → YOLO Training (Apple Silicon GPU) → Real-time Inference
 
@@ -81,7 +80,7 @@ flowchart LR
 - **YOLO Training**: Fine-tuned a pre-trained YOLO nano model utilizing Apple Silicon (MPS).
 - **Real-time Inference**: Deployed the model in a lightweight Python script for high-FPS live webcam processing.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Apple_Clusters_Detector/
@@ -100,7 +99,7 @@ Apple_Clusters_Detector/
 └── LICENSE
 ```
 
-## 📊 Model Performance
+## Model Performance
 
 | Metric | Value |
 |--------|-------|
@@ -113,7 +112,7 @@ Apple_Clusters_Detector/
 | Classes | 1 (`apple_cluster`) |
 | Device | Apple Silicon (MPS) |
 
-## 🔄 Data Augmentation
+## Data Augmentation
 
 To increase dataset diversity and model robustness, the original dataset was subjected to 8 distinct augmentation strategies, yielding roughly 9x more data:
 1. **Lighting variations**: Adjustments to brightness and exposure.
@@ -125,7 +124,7 @@ To increase dataset diversity and model robustness, the original dataset was sub
 7. **Crop & zoom**: Focusing on different scaled regions of the image.
 8. **Heavy combined augmentation**: Mixed techniques for extreme edge cases.
 
-## 🏋️ Training
+## Training
 
 For detailed instructions on retraining the model or replicating the experiments, refer to the [training documentation](training/README.md).
 
@@ -135,7 +134,7 @@ python training/augment_data.py   # Generate augmented dataset
 python training/train.py          # Train the model
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - [Ultralytics YOLO](https://docs.ultralytics.com/)
 - [Albumentations](https://albumentations.ai/)
@@ -143,6 +142,6 @@ python training/train.py          # Train the model
 - [uv (package manager)](https://docs.astral.sh/uv/)
 - Python 3.12
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
