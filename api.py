@@ -15,6 +15,7 @@ from pathlib import Path
 from fastapi import FastAPI, File, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
+from fastapi.staticfiles import StaticFiles
 
 from core import (
     API_ACCEPTED_EXTENSIONS,
@@ -205,3 +206,9 @@ def get_model_info():
 def health():
     """Return the service health status and whether the model is loaded."""
     return {"status": "healthy", "model_loaded": manager.is_loaded}
+
+
+# ──────────────────────────────────────────────────────────────
+# Static frontend (must come AFTER all API routes)
+# ──────────────────────────────────────────────────────────────
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")

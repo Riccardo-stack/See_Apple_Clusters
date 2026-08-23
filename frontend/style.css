@@ -1,0 +1,356 @@
+:root {
+  --green-primary: #2db86b;
+  --green-dark: #1a5c35;
+  --green-darker: #145a2d;
+  --green-light: #6dd4a0;
+  --cream: #f5e6c8;
+  --cream-dark: #e8d5b0;
+  --wheat: #f5deb3;
+  --text-dark: #2d3a2e;
+  --text-light: #f5e6c8;
+  --white: #ffffff;
+  --font-title: 'Fraunces', serif;
+  --font-subtitle: 'Bree Serif', serif;
+  --font-body: 'Questrial', sans-serif;
+}
+
+/* 1. Reset & Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--green-primary);
+  color: var(--text-dark);
+}
+
+/* Generic utility */
+.hidden {
+  display: none !important;
+}
+
+/* 2. Hero Section */
+.hero {
+  min-height: 100vh;
+  background: var(--green-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px; /* Padding for safety on small screens */
+}
+
+/* 3. Hero Content */
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+/* 4. Title */
+.hero-title {
+  font-family: var(--font-title);
+  font-weight: 800;
+  font-size: 4rem;
+  color: var(--cream);
+  text-shadow: 2px 2px 0px var(--green-dark);
+  letter-spacing: 0.5px;
+}
+
+/* 5. Subtitle */
+.hero-subtitle {
+  font-family: var(--font-subtitle);
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--cream);
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* 6. Upload Area */
+.upload-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 7. Dropzone */
+.dropzone {
+  background: var(--wheat);
+  border-radius: 50px;
+  padding: 16px 40px;
+  cursor: pointer;
+  border: 2px dashed transparent;
+  transition: all 0.3s ease;
+}
+
+.dropzone:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.dropzone.drag-over {
+  border-color: var(--green-dark);
+  background: var(--cream);
+}
+
+.dropzone-text {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+/* 8. Decorative Elements */
+.deco {
+  position: absolute;
+  z-index: 1;
+}
+
+.deco-flower-tl {
+  top: 20px;
+  left: 30px;
+  width: 120px;
+  opacity: 0.7;
+}
+
+.deco-flower-tr {
+  top: 20px;
+  right: 30px;
+  width: 120px;
+  opacity: 0.7;
+}
+
+.deco-swirl-bl {
+  bottom: 40px;
+  left: 40px;
+  width: 100px;
+  opacity: 0.6;
+}
+
+.deco-swirl-br {
+  bottom: 40px;
+  right: 40px;
+  width: 120px;
+  opacity: 0.6;
+}
+
+.deco-apple {
+  width: 55px;
+  /* Reset absolute positioning specifically for the apple, as it's part of the flex container */
+  position: static;
+  z-index: auto;
+}
+
+/* 9. About Section */
+.about {
+  background: #1e6b3e; /* Darker green for contrast */
+  padding: 80px 20px;
+}
+
+.about-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content h2 {
+  font-family: var(--font-subtitle);
+  color: var(--cream);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  font-family: var(--font-body);
+  color: var(--cream-dark);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* 10. Results Section */
+.results {
+  background: var(--green-dark);
+  padding: 60px 20px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* 11. Results Container */
+.results-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(0,0,0,0.15);
+  border-radius: 20px;
+  padding: 24px;
+  align-items: center;
+}
+
+/* 12. Results Image */
+.results-image {
+  flex: 1.5;
+}
+
+.results-image img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+/* 13. Stats Cards */
+.results-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 14. Stat Card */
+.stat-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  color: var(--cream-dark);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-family: var(--font-subtitle);
+  color: var(--cream);
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* 15. Reset Button */
+.reset-btn {
+  display: block;
+  margin: 30px auto 0;
+  background: var(--wheat);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 32px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 16. Loading Overlay */
+.loading {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(26, 92, 53, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top-color: var(--cream);
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: var(--cream);
+  font-family: var(--font-body);
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* 17. Error Toast */
+.error-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #c0392b;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.error-toast.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 18. Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .results-container {
+    flex-direction: column;
+  }
+  
+  .deco-flower-tl, 
+  .deco-flower-tr {
+    width: 80px;
+  }
+  
+  .deco-swirl-bl, 
+  .deco-swirl-br {
+    width: 70px;
+  }
+  
+  .deco-apple {
+    width: 40px;
+  }
+  
+  .upload-area {
+    flex-wrap: wrap;
+  }
+}
+
+/* 19. Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

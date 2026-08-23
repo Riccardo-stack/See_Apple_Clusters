@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SEO meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>See Apple Clusters — Detect Apple Clusters Instantly</title>
+  <meta name="description" content="Upload a photo of your apple tree and instantly detect apple clusters to guide your thinning decisions. Powered by a custom YOLO model.">
+  <!-- Google Fonts: Fraunces, Bree Serif, Questrial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;0,9..144,900&family=Bree+Serif&family=Questrial&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <!-- Decorative SVGs (positioned absolutely via CSS) -->
+    <!-- Flower top-left -->
+    <svg class="deco deco-flower-tl" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#1a5c35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Spiral center -->
+        <path d="M 60 60 m -2 0 a 2 2 0 1 0 4 0 a 6 6 0 1 0 -12 0 a 10 10 0 1 0 20 0 a 14 14 0 1 0 -28 0" />
+        <!-- Petals -->
+        <path d="M 55 45 C 40 10 80 10 65 45" />
+        <path d="M 72 50 C 110 35 100 75 75 65" />
+        <path d="M 68 73 C 90 105 50 115 55 75" />
+        <path d="M 50 72 C 20 105 -5 70 45 65" />
+        <path d="M 46 54 C 10 40 25 5 53 48" />
+      </g>
+    </svg>
+    <!-- Flower top-right -->
+    <svg class="deco deco-flower-tr" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#1a5c35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(45 60 60) scale(0.9) translate(5 5)">
+        <!-- Spiral center -->
+        <path d="M 60 60 m -2 0 a 2 2 0 1 0 4 0 a 6 6 0 1 0 -12 0 a 10 10 0 1 0 20 0 a 14 14 0 1 0 -28 0" />
+        <!-- Petals -->
+        <path d="M 55 45 C 40 10 80 10 65 45" />
+        <path d="M 72 50 C 110 35 100 75 75 65" />
+        <path d="M 68 73 C 90 105 50 115 55 75" />
+        <path d="M 50 72 C 20 105 -5 70 45 65" />
+        <path d="M 46 54 C 10 40 25 5 53 48" />
+      </g>
+    </svg>
+    <!-- Swirl bottom-left -->
+    <svg class="deco deco-swirl-bl" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 20 90 Q 50 20 90 40 T 70 80 T 50 50" fill="none" stroke="#1a5c35" stroke-width="2.5" stroke-linecap="round" />
+    </svg>
+    <!-- Swirl bottom-right -->
+    <svg class="deco deco-swirl-br" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#1a5c35" stroke-width="2.5" stroke-linecap="round">
+        <path d="M 100 90 Q 70 20 30 40 T 50 80 T 70 50" />
+        <path d="M 85 85 Q 60 30 20 50" />
+        <path d="M 110 75 Q 90 40 60 30" />
+      </g>
+    </svg>
+    
+    <!-- Main content -->
+    <div class="hero-content">
+      <h1 class="hero-title">See Apple Clusters</h1>
+      <p class="hero-subtitle">Instantly detect apple clusters to guide your thinning</p>
+      
+      <div class="upload-area">
+        <!-- Apple SVG left -->
+        <svg class="deco-apple deco-apple-left" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 18 C 45 8 60 23 55 48 C 50 68 35 68 30 63 C 25 68 10 68 5 48 C 0 23 15 8 30 18 Z" fill="#6dd4a0" stroke="#1a5c35" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M 30 18 Q 32 8 40 4" fill="none" stroke="#1a5c35" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 37 12 C 45 7 52 14 45 22 C 40 18 34 16 37 12 Z" fill="#1a5c35" stroke="#1a5c35" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+        
+        <!-- The upload drop zone -->
+        <div id="dropzone" class="dropzone">
+          <span class="dropzone-text">Drop an image here or click to upload</span>
+          <input type="file" id="file-input" accept=".jpg,.jpeg,.png" hidden>
+        </div>
+        
+        <!-- Apple SVG right -->
+        <svg class="deco-apple deco-apple-right" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+          <g transform="scale(-1, 1) translate(-60, 0)">
+            <path d="M 30 18 C 45 8 60 23 55 48 C 50 68 35 68 30 63 C 25 68 10 68 5 48 C 0 23 15 8 30 18 Z" fill="#6dd4a0" stroke="#1a5c35" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 30 18 Q 32 8 40 4" fill="none" stroke="#1a5c35" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 37 12 C 45 7 52 14 45 22 C 40 18 34 16 37 12 Z" fill="#1a5c35" stroke="#1a5c35" stroke-width="1" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about">
+    <div class="about-content">
+      <h2>About This Project</h2>
+      <p>Description coming soon…</p>
+    </div>
+  </section>
+
+  <!-- RESULTS SECTION (hidden by default) -->
+  <section id="results" class="results hidden">
+    <div class="results-container">
+      <div class="results-image">
+        <img id="result-img" src="" alt="Detection results">
+      </div>
+      <div class="results-stats">
+        <div class="stat-card">
+          <span class="stat-label">Inference Time</span>
+          <span class="stat-value" id="stat-time">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Detections Count</span>
+          <span class="stat-value" id="stat-count">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Confidence Used</span>
+          <span class="stat-value" id="stat-confidence">—</span>
+        </div>
+      </div>
+    </div>
+    <button id="reset-btn" class="reset-btn">Upload Another Image</button>
+  </section>
+
+  <!-- LOADING OVERLAY (hidden by default) -->
+  <div id="loading" class="loading hidden">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Analyzing your image…</p>
+  </div>
+
+  <!-- ERROR TOAST (hidden by default) -->
+  <div id="error-toast" class="error-toast">
+    <span id="error-message"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
