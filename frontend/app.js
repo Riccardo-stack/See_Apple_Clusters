@@ -107,7 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let response;
     try {
-      response = await fetch(`${API_BASE_URL}/detect?confidence=0.75`, {
+      const base = API_BASE_URL.replace(/\/+$/, '');
+      response = await fetch(`${base}/detect?confidence=0.75`, {
         method: 'POST',
         body: formData,
       });
