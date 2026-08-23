@@ -17,6 +17,7 @@ Real-time apple cluster detection powered by a custom-trained YOLO model. A comp
 - **Save results**: Option to save detection results after viewing.
 - **Full reproducible training pipeline**: Scripts available to recreate the training from scratch.
 - **Auto-download of pre-trained weights**: Seamlessly fetches models from GitHub Releases.
+- **REST API**: FastAPI service to run inference remotely over HTTP (see [API docs](docs/api.md)).
 
 ## Quick Start
 
@@ -85,6 +86,11 @@ flowchart LR
 ```
 Apple_Clusters_Detector/
 ├── main.py                  # Entry point — interactive detection menu
+├── api.py                   # FastAPI REST API
+├── core.py                  # Shared inference logic (used by main.py & api.py)
+├── settings.py              # API configuration (env / .env)
+├── docs/
+│   └── api.md               # Full API reference
 ├── models/
 │   └── README.md            # Model download instructions
 ├── samples/                 # 8 sample images for testing
@@ -123,6 +129,19 @@ To increase dataset diversity and model robustness, the original dataset was sub
 6. **Noise injection**: Simulating sensor noise.
 7. **Crop & zoom**: Focusing on different scaled regions of the image.
 8. **Heavy combined augmentation**: Mixed techniques for extreme edge cases.
+
+## REST API
+
+The project also ships a FastAPI REST service for remote HTTP inference.
+
+```bash
+uv run uvicorn api:app --reload
+# → http://localhost:8000/docs  (interactive Swagger UI)
+```
+
+See the full [**API reference**](docs/api.md) for all endpoints, configuration, and code examples.
+
+---
 
 ## Training
 

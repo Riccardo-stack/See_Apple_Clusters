@@ -21,6 +21,7 @@ Database_apples/
 dataset/
 runs/
 results/
+result.jpg
 
 # Model weights (auto-downloaded from GitHub Releases)
 models/*.pt
@@ -30,6 +31,9 @@ yolo*.pt
 
 # YOLO caches
 *.cache
+
+# Environment
+.env
 
 # macOS
 .DS_Store

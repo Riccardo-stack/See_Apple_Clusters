@@ -6,56 +6,26 @@ running inference on a photo / video selected through a file dialog.
 """
 
 import argparse
-import os
 import sys
 import tkinter as tk
-import urllib.request
 from pathlib import Path
 from tkinter import filedialog
 
 import cv2
 from ultralytics import YOLO
 
+from core import IMAGE_EXTENSIONS, VIDEO_EXTENSIONS, ensure_model
+from settings import Settings
+
 # ──────────────────────────────────────────────────────────────
 # Configuration
 # ──────────────────────────────────────────────────────────────
-MODEL_PATH = Path(__file__).resolve().parent / "models" / "best.pt"
-MODEL_URL = (
-    "https://github.com/Riccardo-stack/See_Apple_Clusters/"
-    "releases/download/v1.0/best.pt"
-)
-
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
-VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv", ".wmv", ".flv", ".webm"}
+_settings = Settings()
+MODEL_PATH = _settings.resolved_model_path
+MODEL_URL = _settings.model_url
 
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 
-
-# ──────────────────────────────────────────────────────────────
-# Helpers
-# ──────────────────────────────────────────────────────────────
-def download_progress(count, block_size, total_size):
-    """Report download progress to stdout."""
-    if total_size > 0:
-        percent = min(int(count * block_size * 100 / total_size), 100)
-        sys.stdout.write(f"\rDownloading model weights: {percent}%")
-        sys.stdout.flush()
-
-
-def ensure_model() -> Path:
-    """Download model weights if they don't exist locally."""
-    if MODEL_PATH.exists():
-        return MODEL_PATH
-    print(f"Model not found at {MODEL_PATH}")
-    MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        print(f"Downloading from {MODEL_URL}...")
-        urllib.request.urlretrieve(MODEL_URL, MODEL_PATH, reporthook=download_progress)
-        print("\nDownload complete.")
-    except Exception as e:
-        print(f"\nFailed to download model: {e}")
-        sys.exit(1)
-    return MODEL_PATH
 
 
 def pick_file() -> str | None:
@@ -195,7 +165,7 @@ def main():
     args = parser.parse_args()
 
     # Ensure model weights are available
-    ensure_model()
+    ensure_model(MODEL_PATH, MODEL_URL)
 
     # Load model once
     print("Loading model...")

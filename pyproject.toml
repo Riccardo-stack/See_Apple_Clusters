@@ -7,11 +7,15 @@ requires-python = ">=3.12"
 dependencies = [
     "albumentations>=2.0.8",
     "coremltools>=9.0",
+    "fastapi>=0.115.0",
     "numpy>=2.5.1",
     "onnx>=1.22.0",
     "onnxruntime>=1.27.0",
     "onnxslim>=0.1.94",
     "opencv-python>=4.11.0",
+    "pydantic-settings>=2.7.0",
     "pillow>=12.3.0",
+    "python-multipart>=0.0.18",
     "ultralytics>=8.4.90",
+    "uvicorn[standard]>=0.34.0",
 ]
