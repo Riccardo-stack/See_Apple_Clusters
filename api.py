@@ -59,7 +59,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://see-apple-clusters.vercel.app/"
+        "http://localhost:8000",            # Per lo sviluppo locale
+        "http://127.0.0.1:8000"],
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
     expose_headers=[
