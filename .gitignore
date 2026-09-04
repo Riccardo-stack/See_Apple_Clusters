@@ -23,8 +23,9 @@ runs/
 results/
 result.jpg
 
-# Model weights (auto-downloaded from GitHub Releases)
+# Model weights (best.pt tracked for cloud deployment)
 models/*.pt
+!models/best.pt
 
 # Pretrained base weights
 yolo*.pt

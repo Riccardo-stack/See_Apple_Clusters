@@ -1,0 +1,25 @@
+.git
+.venv
+.export_venv
+venv
+env
+__pycache__
+*.py[cod]
+*$py.class
+.DS_Store
+
+# Training data & heavy local folders
+Database_apples
+dataset
+Immagini
+runs
+results
+result.jpg
+training
+docs
+samples
+
+# Environment & IDE
+.env
+.idea
+.vscode
