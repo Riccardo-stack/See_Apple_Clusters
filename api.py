@@ -220,4 +220,7 @@ def health():
 # ──────────────────────────────────────────────────────────────
 # Static frontend (must come AFTER all API routes)
 # ──────────────────────────────────────────────────────────────
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
+_frontend_dir = Path(__file__).resolve().parent / "frontend"
+if _frontend_dir.exists():
+    app.mount("/", StaticFiles(directory=str(_frontend_dir), html=True), name="frontend")
+
