@@ -1,9 +1,6 @@
 // ─── API Configuration ───────────────────────────────────────
-// When running locally, leave this as an empty string "".
-// For Vercel deployment, set this to your Tailscale Funnel URL
-// e.g. "https://your-machine-name.tail1234.ts.net"
-// (no trailing slash)
-const API_BASE_URL = "https://macbook-air-di-riccardo.tail22ee74.ts.net/";
+// Modal 24/7 serverless endpoint:
+const API_BASE_URL = "https://riccardo-stack--apple-clusters-api-fastapi-app.modal.run";
 // ─────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
