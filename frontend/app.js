@@ -219,4 +219,23 @@ document.addEventListener('DOMContentLoaded', () => {
       errorToast.classList.remove('visible');
     }, 4000);
   }
+
+  // --- Scroll Animations ---
+  const aboutContent = document.querySelector('.about-content');
+  if (aboutContent) {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            aboutContent.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      observer.observe(aboutContent);
+    } else {
+      aboutContent.classList.add('visible');
+    }
+  }
 });
