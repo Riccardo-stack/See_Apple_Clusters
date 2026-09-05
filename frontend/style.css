@@ -293,6 +293,15 @@ body {
   font-size: 1.1rem;
 }
 
+.loading-subtext {
+  color: var(--cream);
+  font-family: var(--font-body);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  animation: fadeIn 0.4s ease-out;
+}
+
 /* 17. Error Toast */
 .error-toast {
   position: fixed;

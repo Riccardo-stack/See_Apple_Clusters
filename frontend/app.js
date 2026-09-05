@@ -16,11 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const statConfidence = document.getElementById('stat-confidence');
   const resetBtn = document.getElementById('reset-btn');
   const loadingOverlay = document.getElementById('loading');
+  const loadingSubtext = document.getElementById('loading-subtext');
   const errorToast = document.getElementById('error-toast');
   const errorMessage = document.getElementById('error-message');
 
   let currentImageUrl = null;
   let errorTimeout = null;
+  let loadingTimer = null;
 
   // --- 1. File Upload (click + drag-and-drop) ---
 
@@ -177,10 +179,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- UI Helpers ---
   function showLoading() {
+    if (loadingSubtext) {
+      loadingSubtext.classList.add('hidden');
+    }
     loadingOverlay.classList.remove('hidden');
+
+    if (loadingTimer) {
+      clearTimeout(loadingTimer);
+    }
+    loadingTimer = setTimeout(() => {
+      if (loadingSubtext) {
+        loadingSubtext.classList.remove('hidden');
+      }
+    }, 2000);
   }
 
   function hideLoading() {
+    if (loadingTimer) {
+      clearTimeout(loadingTimer);
+      loadingTimer = null;
+    }
+    if (loadingSubtext) {
+      loadingSubtext.classList.add('hidden');
+    }
     loadingOverlay.classList.add('hidden');
   }
 
