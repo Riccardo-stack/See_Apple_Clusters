@@ -1,10 +1,3 @@
-"""
-Tests for FastAPI REST API endpoints (api.py).
-
-These tests use FastAPI's TestClient to send simulated HTTP requests
-and verify response status codes, headers, and JSON payloads.
-"""
-
 import pytest
 
 
