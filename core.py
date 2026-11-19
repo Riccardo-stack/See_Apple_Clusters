@@ -82,6 +82,8 @@ def decode_image(file_bytes: bytes) -> np.ndarray | None:
 
     Returns ``None`` when the bytes cannot be decoded.
     """
+    if not file_bytes:
+        return None
     nparr = np.frombuffer(file_bytes, np.uint8)
     image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return image

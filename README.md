@@ -153,6 +153,19 @@ python training/augment_data.py   # Generate augmented dataset
 python training/train.py          # Train the model
 ```
 
+## Testing
+
+Run the automated test suite with `pytest`:
+
+```bash
+uv run pytest
+```
+
+For detailed test-by-test output:
+```bash
+uv run pytest -v
+```
+
 ## Tech Stack
 
 - [Ultralytics YOLO](https://docs.ultralytics.com/)
