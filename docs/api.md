@@ -246,3 +246,15 @@ console.log("Detections:", response.headers.get("X-Detections-Count"));
 curl http://localhost:8000/health
 # → {"status":"healthy","model_loaded":true}
 ```
+
+---
+
+## Automated Testing
+
+The API includes a comprehensive `pytest` suite testing all endpoints, input validation, and custom headers.
+
+Run the API test suite with:
+
+```bash
+uv run pytest tests/test_api.py -v
+```

@@ -3,7 +3,7 @@
 Model weights are auto-downloaded to this directory when running `main.py`.
 
 ## Manual Download
-If you prefer, you can download the model weights manually from the [GitHub Releases](https://github.com/YOUR_USERNAME/Apple_Clusters_Detector/releases) page.
+If you prefer, you can download the model weights manually from the [GitHub Releases](https://github.com/Riccardo-stack/See_Apple_Clusters/releases) page.
 Download `best.pt` and place it in this directory.
 
 ## Model Details
@@ -11,4 +11,4 @@ Download `best.pt` and place it in this directory.
 - Trained on: Custom apple cluster dataset
 - File: `best.pt` (~20 MB)
 
-*Note: This directory is gitignored for `.pt` files.*
+*Note: `models/best.pt` is tracked in the repository for deployment, while temporary `.pt` files remain gitignored.*

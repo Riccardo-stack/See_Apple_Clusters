@@ -18,6 +18,7 @@ Real-time apple cluster detection powered by a custom-trained YOLO model. A comp
 - **Full reproducible training pipeline**: Scripts available to recreate the training from scratch.
 - **Auto-download of pre-trained weights**: Seamlessly fetches models from GitHub Releases.
 - **REST API**: FastAPI service to run inference remotely over HTTP (see [API docs](docs/api.md)).
+- **Automated Test Suite**: Built-in tests with `pytest` covering API endpoints and core detection logic.
 
 ## Quick Start
 
@@ -28,8 +29,8 @@ Real-time apple cluster detection powered by a custom-trained YOLO model. A comp
 
 ### Installation
 ```bash
-git clone https://github.com/YOUR_USERNAME/Apple_Clusters_Detector.git
-cd Apple_Clusters_Detector
+git clone https://github.com/Riccardo-stack/See_Apple_Clusters.git
+cd See_Apple_Clusters
 uv sync
 ```
 
@@ -89,12 +90,19 @@ Apple_Clusters_Detector/
 ├── api.py                   # FastAPI REST API
 ├── core.py                  # Shared inference logic (used by main.py & api.py)
 ├── settings.py              # API configuration (env / .env)
+├── modal_app.py             # Serverless cloud deployment script (Modal)
 ├── docs/
 │   └── api.md               # Full API reference
+├── frontend/                # Web interface (HTML/CSS/JS)
 ├── models/
-│   └── README.md            # Model download instructions
-├── samples/                 # 8 sample images for testing
-│   └── *.jpg
+│   ├── README.md            # Model download instructions
+│   └── best.pt              # Trained YOLO model weights
+├── samples/                 # Sample images for testing & inference
+│   └── *.jpeg
+├── tests/                   # Automated test suite (pytest)
+│   ├── conftest.py          # Pytest fixtures and TestClient setup
+│   ├── test_api.py          # API endpoint tests (/health, /model, /detect)
+│   └── test_core.py         # Unit tests for image decoding & settings
 ├── training/
 │   ├── README.md            # Training documentation
 │   ├── train.py             # YOLO training script
@@ -166,11 +174,25 @@ For detailed test-by-test output:
 uv run pytest -v
 ```
 
+To run a specific test module:
+```bash
+uv run pytest tests/test_api.py    # API endpoints (/health, /model, /detect)
+uv run pytest tests/test_core.py   # Core helper functions (decoding & settings)
+```
+
+### What is Tested
+- **Health & Metadata**: `GET /health` and `GET /model` response structures.
+- **Inference Pipeline**: `POST /detect` with real images, checking `200 OK`, JPEG output, and detection headers (`X-Detections-Count`, `X-Inference-Time-Ms`, `X-Confidence-Threshold`).
+- **Input Validation**: Rejection of unsupported file extensions (`.txt`, `.pdf`, `.csv`, `.mp3`, `.gif`), corrupted images, missing files, and out-of-range confidence thresholds.
+- **Core Logic**: OpenCV image decoding (`decode_image`), handling empty/corrupted byte buffers, and default configuration values in `settings.py`.
+
 ## Tech Stack
 
 - [Ultralytics YOLO](https://docs.ultralytics.com/)
-- [Albumentations](https://albumentations.ai/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [pytest](https://docs.pytest.org/)
 - [OpenCV](https://opencv.org/)
+- [Albumentations](https://albumentations.ai/)
 - [uv (package manager)](https://docs.astral.sh/uv/)
 - Python 3.12
 
